@@ -1,0 +1,31 @@
+:host {
+	height: 100%;
+	margin: 0;
+}
+
+.mat-tab-label{
+	display: none  !important;
+}
+
+.card.card-custom {
+	.card-body {
+		padding-top: 0;
+	}
+} 
+
+.header-fixed.subheader-fixed.subheader-enabled .wrapper {
+	padding-top: 0px !important;
+}
+
+.header-fixed.subheader-fixed .header {
+    box-shadow: none !important;
+    background: #b2d147b3 !important;
+}
+
+.card.card-custom.card-body {
+	padding-top: 0px !important;
+}
+
+.mat-tab-group.mat-tab-header{
+	display: none !important;
+}
