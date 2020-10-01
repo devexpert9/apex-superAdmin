@@ -109,21 +109,21 @@ export class MyPageComponent implements OnInit {
     		if(this.pageData[index].selfservice_image != '')
     		{
     			this.selfImage2 = this.pageData[index].selfservice_image;
-    			document.getElementById('ban_img').setAttribute("src",'http://18.217.224.73:3000/images/'+this.pageData[index].selfservice_image);
+    			document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+this.pageData[index].selfservice_image);
     		}else{
     			document.getElementById('ban_img').setAttribute("src",'');
     		}
 	      	
 	      	if(this.pageData[index].disability_image != ''){
 	      		this.disabilityImage2 = this.pageData[index].disability_image;
-    			document.getElementById('ban_img1').setAttribute("src",'http://18.217.224.73:3000/images/'+this.pageData[index].disability_image);
+    			document.getElementById('ban_img1').setAttribute("src",'http://3.136.84.42:3000/images/'+this.pageData[index].disability_image);
     		}else{
     			document.getElementById('ban_img1').setAttribute("src",'');
     		}
 
     		if(this.pageData[index].property_casuality_image != ''){
     			this.propertyImage2 = this.pageData[index].property_casuality_image;
-    			document.getElementById('ban_img2').setAttribute("src",'http://18.217.224.73:3000/images/'+this.pageData[index].property_casuality_image);
+    			document.getElementById('ban_img2').setAttribute("src",'http://3.136.84.42:3000/images/'+this.pageData[index].property_casuality_image);
     		}else{
     			document.getElementById('ban_img2').setAttribute("src",'');
     		}

@@ -51,7 +51,7 @@ export class EditTestimonialComponent implements OnInit {
 	selfImage:any = '';
 	showError:any;
 	imageRequired: any = false;
-	imagePath:any = 'http://18.217.224.73:3000/images/';
+	imagePath:any = 'http://3.136.84.42:3000/images/';
 	// Private properties
 	private subscriptions: Subscription[] = [];
 
@@ -103,7 +103,7 @@ export class EditTestimonialComponent implements OnInit {
 			      this.oldUser = Object.assign({}, this.user);
 			      this.initUser();
 			      this.selfImage1 = response.data.image;
-			      document.getElementById('ban_img').setAttribute("src",'http://18.217.224.73:3000/images/'+ this.selfImage1);
+			      document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+ this.selfImage1);
 				// 		this.initUser();
 			      // if(response.status == 1){
 			      //   this.pageData = response.data.data;
@@ -125,7 +125,7 @@ export class EditTestimonialComponent implements OnInit {
 				this.user = new User();
 				this.user.clear();
 				this.rolesSubject.next(this.user.roles);
-				this.addressSubject.next(this.user.address);
+				//this.addressSubject.next(this.user.address);
 				this.soicialNetworksSubject.next(this.user.socialNetworks);
 				this.oldUser = Object.assign({}, this.user);
 				this.initUser();
@@ -172,7 +172,7 @@ export class EditTestimonialComponent implements OnInit {
 		let regexp = /^\S*$/;
 		let regexpFullname = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
 		let regexpUsername = /^[0-9]*$/;
-
+		const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 		this.userForm = this.userFB.group({
 			// username: [this.user.username, Validators.required, Validators.pattern(regexp)],
 			name: [this.name, Validators.compose([
@@ -180,8 +180,9 @@ export class EditTestimonialComponent implements OnInit {
 				Validators.pattern(regexpFullname)
 				])
 			],
-			position: [this.user.position, Validators.compose([
+			website: [this.user.website, Validators.compose([
 				Validators.required,
+				Validators.pattern(urlRegex)
 			])],
 			// password: [this.user.password, Validators.required]
 			message: [this.user.message, Validators.compose([
@@ -305,7 +306,7 @@ export class EditTestimonialComponent implements OnInit {
 		_user.clear();
 		_user.id 			= this.userId;
 		_user.name 		= controls.name.value;
-		_user.position 		= controls.position.value;
+		_user.website 		= controls.website.value;
 		_user.message 		= controls.message.value;
 		_user.image 		= controls.image.value;
 		return _user;
@@ -322,7 +323,7 @@ export class EditTestimonialComponent implements OnInit {
 		this.ngxService.start();
 		let dict = {
           	"name"     		: _user.name,
-          	"position"     	: _user.position,
+          	"website"     	: _user.website,
           	"message"     	: _user.message,
           	"image"     	: this.selfImage1,
       	};
@@ -365,7 +366,7 @@ export class EditTestimonialComponent implements OnInit {
 		// this.ngxService.start();
 		let dict = {
 	          "name"     		: _user.name,
-          	"position"     	: _user.position,
+          	"website"     	: _user.website,
           	"message"     	: _user.message,
           	"image"     	: this.selfImage1,
 	          "_id" 		: _user.id
@@ -442,7 +443,7 @@ export class EditTestimonialComponent implements OnInit {
       this.ngxService.start();
       let dict = {
           "name"     		: controls.name.value,
-          "position"     	: controls.position.value,
+          "website"     	: controls.website.value,
           "message"     		: controls.message.value,
           "image"     	: controls.image.value,
       };
@@ -484,7 +485,7 @@ export class EditTestimonialComponent implements OnInit {
     	const controls = this.userForm.controls;
     	let dict = {
           "name"     		: controls.name.value,
-          "position"     	: controls.position.value,
+          "website"     	: controls.website.value,
           "message"     		: controls.message.value,
           "image"     	: this.selfImage1,
           "id": this.user.id

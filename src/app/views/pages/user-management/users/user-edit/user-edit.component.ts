@@ -118,7 +118,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 				this.user = new User();
 				this.user.clear();
 				this.rolesSubject.next(this.user.roles);
-				this.addressSubject.next(this.user.address);
+				// this.addressSubject.next(this.user.address);
 				this.soicialNetworksSubject.next(this.user.socialNetworks);
 				this.oldUser = Object.assign({}, this.user);
 				this.initUser();
@@ -164,7 +164,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		let regexp = /^\S*$/;
 		let regexpFullname = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
 		let regexpUsername = /^[A-Za-z]+$/;
-
+		const contactRegex = /^[0-9]{10}$/;
+		const zipRegex = /^[0-9]{4,8}$/;
 		this.userForm = this.userFB.group({
 			// username: [this.user.username, Validators.required, Validators.pattern(regexp)],
 			fullname: [this.name, Validators.compose([
@@ -181,9 +182,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 			// password: [this.user.password, Validators.required]
 			password: [this.user.password, Validators.compose([
 				Validators.required,
-				Validators.pattern(regexp),
-				Validators.minLength(6),
-				Validators.maxLength(100)
+				Validators.pattern(regexp)
 				])
 			],
 			username: [this.user.username, Validators.compose([
@@ -192,7 +191,27 @@ export class UserEditComponent implements OnInit, OnDestroy {
 				Validators.minLength(6),
 				Validators.maxLength(10)
 				])
-			]
+			],
+	        contact: [this.user.contact, Validators.compose([
+	        	Validators.required, 
+	        	Validators.pattern(contactRegex)])
+	        ],
+	        zip: [this.user.zip, Validators.compose([
+	        	Validators.required, 
+	        	Validators.pattern(zipRegex)])
+	        ],
+	        city: [this.user.city, Validators.compose([
+	        	Validators.required])
+	        ],
+	        state: [this.user.state, Validators.compose([
+	        	Validators.required])
+	        ],
+	        address: [this.user.address, Validators.compose([
+	        	Validators.required])
+	        ],
+	        country: [this.user.country, Validators.compose([
+	        	Validators.required])
+	        ],
 		});
 		this.ngxService.stop();
 	}
@@ -278,6 +297,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		_user.email 		= controls.email.value;
 		_user.fullname 		= controls.fullname.value;
 		_user.password 		= controls.password.value;
+		_user.zip 		= controls.zip.value;
+		_user.country 		= controls.country.value;
+		_user.state 		= controls.state.value;
+		_user.city 		= controls.city.value;
+		_user.address 		= controls.address.value;
+		_user.contact 		= controls.contact.value;
+		// _user.password 		= controls.password.value;
 		return _user;
 	}
 
@@ -295,6 +321,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
           	"username"     	: _user.username,
           	"email"     	: _user.email,
           	"password"     	: _user.password,
+          	"contact"     	: _user.contact,
+          	"zip"     	: _user.zip,
+          	"state"     	: _user.state,
+          	"city"     	: _user.city,
+          	"country"     	: _user.country,
+          	"address"     	: _user.address,
+          	// "contcat"     	: _user.contcat,
       	};
 
       	this.adminService.postData('addUser',dict).subscribe((response:any) => {
@@ -323,11 +356,17 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	{
 		this.ngxService.start();
 		let dict = {
-	          "name"     	: _user.fullname,
-	          "username"    : _user.username,
-	          "email"     	: _user.email,
-	          "password"    : _user.password,
-	          "_id" 		: _user.id
+	          	"name"     	: _user.fullname,
+	          	"username"    : _user.username,
+	          	"email"     	: _user.email,
+	          	"password"    : _user.password,
+	          	"_id" 		: _user.id,
+	          	"contact"     	: _user.contact,
+          		"zip"     	: _user.zip,
+          		"state"     	: _user.state,
+          		"city"     	: _user.city,
+          		"country"     	: _user.country,
+          		"address"     	: _user.address,
 	      	};
 
       	this.adminService.postData('update_user',dict).subscribe((response:any) => {

@@ -54,9 +54,17 @@
 									</div>
 
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<label _ngcontent-uvd-c26="">Position</label>
-											<select name="position" placeholder="Select Position" formControlName="position" class="form-control"> 
-												<!-- <option value="">Select a Position</option> -->
+										<label _ngcontent-uvd-c26="">Website</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input matInput  formControlName="website"/>
+											<mat-error>Website is
+												<strong>required</strong>
+											</mat-error>
+											<mat-hint align="start">
+												<strong>www.example.com</strong>
+											</mat-hint>
+										</mat-form-field>
+											<!-- <select name="position" placeholder="Select Position" formControlName="position" class="form-control"> 
 	  											<option value="manager" selected>Manager</option>
 	  											<option value="CEO">CEO</option>
 	 											<option value="Supervisior">Supervisior</option>
@@ -64,7 +72,7 @@
 
  											<span *ngIf="userForm.controls.position.hasError('required') && userForm.controls.position.touched">
 												<strong style="color:red;font-weight: normal;font-size: 11px;">Please select position.</strong>
-											</span>
+											</span> -->
 										<!-- </mat-form-field> -->
 									</div>
 								</div>
@@ -96,7 +104,7 @@
 											    <div class="formimg" style="margin:10px 0 0 1px">
 											      <img height="110px" src="{{selfImage1}}" id="ban_img" *ngIf="selfImage"/>
 
-											      <img height="110px" src="http://18.217.224.73:3000/images/{{selfImage1}}" id="ban_img" *ngIf="selfImage1 && !imageRequired"/>
+											      <img height="110px" src="http://3.136.84.42:3000/images/{{selfImage1}}" id="ban_img" *ngIf="selfImage1 && !imageRequired"/>
 										        </div>
 
 										        <span *ngIf="showError">

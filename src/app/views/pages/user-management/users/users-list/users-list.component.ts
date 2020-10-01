@@ -53,7 +53,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	// Table fields
 	// dataSource: UsersDataSource;
 	
-	displayedColumns = ['username', 'email', 'fullname', 'actions'];
+	displayedColumns = [ 'fullname', 'email', 'created_on', 'actions'];
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	// @ViewChild('sort1', {static: true}) sort: MatSort;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -323,5 +323,29 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	 */
 	editUser(id) {
 		this.router.navigate(['../users/edit', id], { relativeTo: this.activatedRoute });
+	}
+
+	manageExpiryDate(date){
+		console.log(date);
+		var x = 3; //or whatever offset
+		var CurrentDate = new Date(date);
+		console.log("Current date:", CurrentDate);
+		CurrentDate.setMonth(CurrentDate.getMonth() + x);
+		console.log("Date after " + x + " months:", CurrentDate);
+		return CurrentDate;
+	}
+
+	updateStatus(user, status, msg)
+	{
+		// if (confirm(msg))
+  //   	{
+			let dict = {
+		      "_id" : user._id,
+		      "status": status
+		    };
+		    this.adminService.postData('updateAgentStatus',dict).subscribe((response: any) => {
+		      this.getAllAgentsData();
+		    });
+		// }
 	}
 }

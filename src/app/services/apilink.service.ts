@@ -32,7 +32,7 @@ export class CommonRequestOptions extends RequestOptions {
  */
 export function extracted(options: RequestOptionsArgs) {
   if (!validUrl(options.url)) {
-    options.url = 'http://18.217.224.73:3000/' + (options.url ? options.url : "");
+    options.url = 'http://3.136.84.42:3000/' + (options.url ? options.url : "");
   }
  
 

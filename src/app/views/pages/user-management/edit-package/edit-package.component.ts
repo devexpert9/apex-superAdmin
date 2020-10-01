@@ -118,7 +118,7 @@ export class EditPackageComponent implements OnInit {
 				this.user = new User();
 				this.user.clear();
 				this.rolesSubject.next(this.user.roles);
-				this.addressSubject.next(this.user.address);
+				//this.addressSubject.next(this.user.address);
 				this.soicialNetworksSubject.next(this.user.socialNetworks);
 				this.oldUser = Object.assign({}, this.user);
 				this.initUser();

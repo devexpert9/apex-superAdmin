@@ -91,7 +91,11 @@
 				<ng-container matColumnDef="timePeriod">
 					<mat-header-cell *matHeaderCellDef mat-sort-header>Time</mat-header-cell>
 					<mat-cell *matCellDef="let user">
-						<ng-container>{{user?.timePeriod}}</ng-container>
+						<ng-container *ngIf="user?.timePeriod == '1'">On-time</ng-container>
+						<ng-container *ngIf="user?.timePeriod == '1-1'">Monthly</ng-container>
+						<ng-container *ngIf="user?.timePeriod == '6'">Semi-Annual</ng-container>
+						<ng-container *ngIf="user?.timePeriod == '12'">Annual</ng-container>
+						<ng-container *ngIf="user?.timePeriod == 'indefinate'">Indefinately</ng-container>
 					</mat-cell>
 				</ng-container>
 

@@ -77,7 +77,7 @@
 					<mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
 					<mat-cell *matCellDef="let user">
 						<ng-container>
-							<img src="http://18.217.224.73:3000/images/{{user?.image}}" style="width:100px">
+							<img src="http://3.136.84.42:3000/images/{{user?.image}}" style="width:100px">
 						</ng-container>
 					</mat-cell>
 				</ng-container>
@@ -90,9 +90,9 @@
 				</ng-container>
 
 				<ng-container matColumnDef="position">
-					<mat-header-cell *matHeaderCellDef mat-sort-header>Position</mat-header-cell>
+					<mat-header-cell *matHeaderCellDef mat-sort-header>Website</mat-header-cell>
 					<mat-cell *matCellDef="let user">
-						<ng-container>{{user?.position}}</ng-container>
+						<ng-container>{{user?.website}}</ng-container>
 					</mat-cell>
 				</ng-container>
 

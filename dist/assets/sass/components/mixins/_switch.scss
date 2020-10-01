@@ -6,21 +6,29 @@
 @mixin switch-size($margin, $width, $height, $line-height, $space, $checked-tick-pos, $icon-font-size) {
     input:empty ~ span {
         //line-height: $line-height;
-        margin: $margin;
+        /*margin: $margin;
         height: $height;
         width: $width + $space;
-        border-radius: ($height/2);
+        border-radius: ($height/2);*/
+        margin: 10px 0 0 0;
+        height: 21px;
+        width: 38px;
+        border-radius: 15px;
     }
 
     input:empty ~ span:before,
     input:empty ~ span:after {
-        width: $width;
-        border-radius: ($height/2);
+        /*width: $width;*/
+        /*border-radius: ($height/2);*/
+        width: 47px;
+        border-radius: 15px;
     }
 
     input:empty ~ span:after {
-        height: $height - 2 * $space;
-        width: $height - 2 * $space;
+        /*height: $height - 2 * $space;
+        width: $height - 2 * $space;*/
+        height: 15px;
+        width: 15px;
         //line-height: $line-height;
         top: $space;
         bottom: $space;

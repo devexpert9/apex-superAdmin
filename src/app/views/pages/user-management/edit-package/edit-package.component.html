@@ -56,7 +56,7 @@
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
 										<label _ngcontent-uvd-c26="">Package Price</label>
 										<mat-form-field class="mat-form-field-fluid">
-											<input type="tel" matInput  formControlName="price"/>
+											$<input type="tel" matInput  formControlName="price" style="position: absolute;" />
 											<mat-error>Enter valid Price
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
@@ -86,9 +86,11 @@
 											<label _ngcontent-uvd-c26="">Package Interval</label>
 											<select name="timePeriod" placeholder="Enter Interval" formControlName="timePeriod" class="form-control"> 
 												<!-- <option value="">Select a Packaging Interval</option> -->
-	  											<option value="monthly" selected>Monthly</option>
-	  											<option value="6 months">6 months</option>
-	 											<option value="yearly">Yearly</option>
+												<option value="1" selected>On-time (1 month)</option>
+	  											<option value="1-1">Monthly</option>
+	  											<option value="6">Semi-Annual</option>
+	  											<option value="12">Annual</option>
+	 											<option value="indefinate">Indefinately</option>
  											</select>
 										<!-- </mat-form-field> -->
 											<span *ngIf="userForm.controls.timePeriod.hasError('required') && userForm.controls.timePeriod.touched">

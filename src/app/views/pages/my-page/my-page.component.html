@@ -13,7 +13,7 @@
 			  	<div class="col-md-12" style="clear:both;">
 			  		
 
-				  	<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 0px 0;">
+				  	<!-- <div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 0px 0;">
 				  		
 				  		<div class="form-group">
 				  			<label style="float:left;width:100%; font-size:17px;padding: 0 10px">Active/In-active Sections</label>
@@ -41,9 +41,9 @@
 
 				  			<span style="font-size:16px;margin: 5px 10px 0 8px;display: inline-block;">Property And Casuality Content</span> 
 				  		</h2>
-			  		</div>
+			  		</div> -->
 
-			  		<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
+			  		<!-- <div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
 				  		
 				  		
 
@@ -62,12 +62,18 @@
 				  			
 				  			<input type="text"  name="propHeading" id="input-now" class="dropify headHead" formControlName='propHeading' placeholder="Enter Heading" style="float:left;width: 100%;" *ngIf="homeForm?.controls?.propHeadingCheckbox.value">
 				  		</h2>
-			  		</div>
+			  		</div> -->
 
 				  	<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
-				  		<h2 class='h2Head' style="font-size:17px">Self Service</h2>
+				  		<!-- <h2 class='h2Head' style="font-size:17px">Self Service</h2> -->
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 98%;">
+				  			 
+			  				<input type="checkbox"  name="selfHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='selfHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+			  				<input type="text"  name="selfHeading" id="input-now" class="dropify headHead" formControlName='selfHeading' placeholder="Enter Heading"  style="position: absolute;margin-left: 10px;">
+				  		</h2>
 				  		
-				  		<div class="col-md-6" style="float:left;">
+				  		<div class="col-md-6" style="float:left;clear: both;">
 						 	<div class="form-group">
 								<div class='imageParent'>
 				     	 			<input type="file" (change)="onFileChanged($event,'self_service')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='self_service_img' fileinput="file"  ngf-select>
@@ -96,7 +102,10 @@
 					</div>
 
 					<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
-						<h2 class='h2Head' style="font-size:17px">Disability Content</h2>
+						<h2 class='h2Head' style="font-size:17px;float: left;width: 98%;">
+							<input type="checkbox"  name="disabilityHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='disabilityHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+							<input type="text"  name="disabilityHeading" id="input-now" class="dropify headHead" formControlName='disabilityHeading' placeholder="Enter Heading" style="position: absolute;margin-left: 10px;" >
+						</h2>
 						<!-- <h2 class='h2Head'>
 							<span style="font-size: 16px;margin:0 10px 0 0;">Enter Heading:</span> 
 							<input type="text"  name="disabilityHeading" id="input-now" class="dropify headHead" formControlName='disabilityHeading' placeholder="Enter Heading">
@@ -117,6 +126,7 @@
 						</div>
 
 						<div class="col-md-6" style="float:left;">
+						
 						 	<div class="form-group">
 								<!-- <textarea class="form-control" id="disability" formControlName="disability" placeholder="Enter Content"></textarea> -->
 
@@ -131,7 +141,13 @@
 				</div>
 
 				<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
-					<h2 class='h2Head' style="font-size:17px">Property And Casuality Content</h2>
+						<h2 class='h2Head' style="font-size:17px;float: left;width: 98%;">
+				  			
+					  			<input type="checkbox"  name="propHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='propHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+					  			<input type="text"  name="propHeading" id="input-now" class="dropify headHead" formControlName='propHeading' placeholder="Enter Heading" style="position: absolute;margin-left: 10px;" >
+					  		</h2>
+
 					<!-- <h2 class='h2Head'>
 						<span style="font-size: 16px;margin:0 10px 0 0;">Enter Heading:</span> 
 						<input type="text"  name="propHeading" id="input-now" class="dropify headHead" formControlName='propHeading' placeholder="Enter Heading">

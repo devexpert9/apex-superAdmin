@@ -93,21 +93,21 @@ export class ContactUsComponent implements OnInit {
     			{	
     				this.imageRequired = false;
 	    			this.selfImage1 = response.data.image;
-	    			// document.getElementById('ban_img').setAttribute("src",'http://18.217.224.73:3000/images/'+response.data.image);
+	    			// document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+response.data.image);
 	    		}else{
 	    			// document.getElementById('ban_img').setAttribute("src", '');
 	    		}
 	          this.userForm.patchValue({
-	            news_description: response.data.newsletterDesc,
+	            // news_description: response.data.newsletterDesc,
 	            description: response.data.desc,
 	            phone: response.data.phone,
 	            email: response.data.email,
 	            facebook: response.data.facebook,
-	            google: response.data.google,
-	            skype: response.data.skype,
-	            instagram: response.data.instagram,
-	            twitter: response.data.twitter,
-	            linkedin: response.data.linkedin,
+	            // google: response.data.google,
+	            // skype: response.data.skype,
+	            // instagram: response.data.instagram,
+	            // twitter: response.data.twitter,
+	            // linkedin: response.data.linkedin,
 	            address: response.data.address,
 	          });
 
@@ -131,17 +131,17 @@ export class ContactUsComponent implements OnInit {
      	
       	this.userForm = this.fb.group({
 	        phone: ['', Validators.compose([Validators.required, Validators.pattern(contactRegex)]) ],
-	        google: ['', Validators.compose([ Validators.pattern(googleRegex)])],
+	        // google: ['', Validators.compose([ Validators.pattern(googleRegex)])],
 	        facebook: ['', Validators.compose([ Validators.pattern(fbRegex)])],
-	        instagram: ['', Validators.compose([ Validators.pattern(instaRegex)])],
-	        linkedin: ['', Validators.compose([ Validators.pattern(linkedRegex)])],
-	        pintrest: ['', Validators.compose([ Validators.pattern(pintrestRegex)])],
-	        twitter: ['', Validators.compose([ Validators.pattern(twitterRegex)])],
-	        skype: [''],
+	        // instagram: ['', Validators.compose([ Validators.pattern(instaRegex)])],
+	        // linkedin: ['', Validators.compose([ Validators.pattern(linkedRegex)])],
+	        // pintrest: ['', Validators.compose([ Validators.pattern(pintrestRegex)])],
+	        // twitter: ['', Validators.compose([ Validators.pattern(twitterRegex)])],
+	        // skype: [''],
 	        email: ['', Validators.compose([Validators.required, Validators.pattern(emailRegex)])],
 	        description: ['', Validators.compose([Validators.required])],
 	        address: ['', Validators.compose([Validators.required])],
-	        news_description: ['', Validators.compose([Validators.required])],
+	        // news_description: ['', Validators.compose([Validators.required])],
       	});
       	//this.onChanges();
     }
@@ -151,18 +151,18 @@ export class ContactUsComponent implements OnInit {
   	{
   		const controls = this.userForm.controls;
 		let dict = {
-			phone : controls.phone.value,
-			desc : controls.description.value,
-			newsletterDesc : controls.news_description.value,
-			email : controls.email.value,
-			address : controls.address.value,
-			skype : controls.skype.value,
-			facebook : controls.facebook.value,
-			twitter : controls.twitter.value,
-			instagram : controls.instagram.value,
-			google : controls.google.value,
-			pintrest : controls.pintrest.value,
-			linkedin : controls.linkedin.value,
+			phone 			: controls.phone.value,
+			desc 			: controls.description.value,
+			newsletterDesc 	: '',
+			email 			: controls.email.value,
+			address 		: controls.address.value,
+			skype 			: '',
+			facebook 		: controls.facebook.value,
+			twitter 		: '',
+			instagram 		: '',
+			google 			: '',
+			pintrest 		: '',
+			linkedin 		: '',
 		};
 
 	    this.adminService.postData('addWebContactData',dict).subscribe((response: any) => {

@@ -28,7 +28,7 @@
 			<mat-tab>
 				<ng-template mat-tab-label>
 					<i class="mat-tab-label-icon fa fa-user"></i>
-					Usres Info
+					Agent Info
 				</ng-template>
 				<ng-template matTabContent>
 					<!--begin::Form-->
@@ -41,10 +41,10 @@
 							<div class="form-section form-section-first">
 								<div class="form-group row">
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<label _ngcontent-uvd-c26="">Fullname</label>
+										<label _ngcontent-uvd-c26="">Agent Name</label>
 										<mat-form-field class="mat-form-field-fluid">
 											<input matInput formControlName="fullname"/>
-											<mat-error>Full Name is
+											<mat-error>Agent Name is
 												<strong>required ( Only characters allowed )</strong>
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
@@ -92,7 +92,88 @@
 										</mat-form-field>
 									</div>
 								</div>
+
+								<div class="form-group row">
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Contact</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input matInput formControlName="contact"/>
+											<mat-error>Contact is
+												<strong>required ( eg: 9876543210)</strong>
+											</mat-error>
+											<!-- <mat-hint align="start">Please enter
+												<strong>Username</strong>
+											</mat-hint> -->
+										</mat-form-field>
+									</div>
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Address</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input type='text' matInput formControlName="address"/>
+											<mat-error>Address is
+												<strong>required</strong>
+											</mat-error>
+											<!-- <mat-hint align="start">Please enter
+												<strong>Password (Min. 6 digits)</strong>
+											</mat-hint> -->
+										</mat-form-field>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">City</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input matInput formControlName="city"/>
+											<mat-error>City is
+												<strong>required</strong>
+											</mat-error>
+											<!-- <mat-hint align="start">Please enter
+												<strong>Username</strong>
+											</mat-hint> -->
+										</mat-form-field>
+									</div>
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">State</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input type='text' matInput formControlName="state"/>
+											<mat-error>State is
+												<strong>required</strong>
+											</mat-error>
+											<!-- <mat-hint align="start">Please enter
+												<strong>Password (Min. 6 digits)</strong>
+											</mat-hint> -->
+										</mat-form-field>
+									</div>
+								</div>
 							</div>
+
+							<div class="form-group row">
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Zip</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input matInput formControlName="zip"/>
+											<mat-error>Zip is
+												<strong>required with min. 4 characters( Only characters allowed)</strong>
+											</mat-error>
+											<!-- <mat-hint align="start">Please enter
+												<strong>Username</strong>
+											</mat-hint> -->
+										</mat-form-field>
+									</div>
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Country</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input type='text' matInput formControlName="country"/>
+											<mat-error>Country is
+												<strong>required</strong>
+											</mat-error>
+											<!-- <mat-hint align="start">Please enter
+												<strong>Password (Min. 6 digits)</strong>
+											</mat-hint> -->
+										</mat-form-field>
+									</div>
+								</div>
 						</form>
 					</div>
 					<!--end::Form-->

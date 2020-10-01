@@ -58,7 +58,9 @@
 									<div class="col-lg-12 kt-margin-bottom-20-mobile">
 										<ejs-richtexteditor #toolsRTE  formControlName="description" [toolbarSettings]='tools' value=''></ejs-richtexteditor>
 										<span *ngIf="userForm.controls.description.hasError('required') && userForm.controls.description.touched">
-											<strong>Please enter description.</strong>
+											<mat-error>Description is
+												<strong>required</strong>
+											</mat-error>
 										</span>
 									</div>
 								</div>
@@ -75,11 +77,13 @@
 											    <div class="formimg" style="margin:10px 0 0 1px">
 											      <img height="110px" src="{{selfImage1}}" id="ban_img" *ngIf="selfImage"/>
 
-											      <img height="110px" src="http://18.217.224.73:3000/images/{{selfImage1}}" id="ban_img" *ngIf="!imageRequired"/>
+											      <img height="110px" src="http://3.136.84.42:3000/images/{{selfImage1}}" id="ban_img" *ngIf="!imageRequired"/>
 										        </div>
 
 										        <span *ngIf="showError">
-													<strong>Please add self service image.</strong>
+													<mat-error>Image is
+													<strong>required</strong>
+												</mat-error>
 												</span>
 											</div>
 										</div>
