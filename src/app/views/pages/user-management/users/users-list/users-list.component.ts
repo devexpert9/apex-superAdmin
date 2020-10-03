@@ -53,7 +53,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	// Table fields
 	// dataSource: UsersDataSource;
 	
-	displayedColumns = [ 'fullname', 'email', 'created_on', 'actions'];
+	displayedColumns = [ 'fullname', 'email', 'expiry_date', 'actions'];
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	// @ViewChild('sort1', {static: true}) sort: MatSort;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -66,6 +66,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	selection = new SelectionModel<User>(true, []);
 	usersResult: User[] = [];
 	allRoles: Role[] = [];
+	updateStatusData: any = {
+		user: 'dsghfhgas',
+		status: 2
+	};
 
 	// displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   	// dataSource = new MatTableDataSource;
@@ -258,7 +262,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	      		}
 	      		else
 	      		{
-		          alert('Something went wrong, please try again.');
+		          let msg = 'Something went wrong, please try again.';
+		          this.layoutUtilsService.showActionNotification(msg, MessageType.Delete);
 		        }
 			});
     	}
@@ -325,7 +330,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
 		this.router.navigate(['../users/edit', id], { relativeTo: this.activatedRoute });
 	}
 
-	manageExpiryDate(date){
+	manageExpiryDate(date)
+	{
 		console.log(date);
 		var x = 3; //or whatever offset
 		var CurrentDate = new Date(date);
@@ -335,17 +341,31 @@ export class UsersListComponent implements OnInit, OnDestroy {
 		return CurrentDate;
 	}
 
-	updateStatus(user, status, msg)
-	{
-		// if (confirm(msg))
-  //   	{
-			let dict = {
-		      "_id" : user._id,
-		      "status": status
-		    };
-		    this.adminService.postData('updateAgentStatus',dict).subscribe((response: any) => {
-		      this.getAllAgentsData();
-		    });
-		// }
+	updateStatus(user, status)
+	{	
+		console.log(status)
+		if(this.updateStatusData.user != user._id || status != this.updateStatusData.status){
+			this.updateStatusData = {
+				user: user._id,
+				status : status
+			};
+			let string = status == 0 ? 'disable access for the selected user?' : 'enable access for the selected user?';
+			let msg = 'Are you sure you want to ' + string;
+			if (confirm(msg))
+	    	{
+				let dict = {
+			      "_id" : user._id,
+			      "status": status
+			    };
+			    this.adminService.postData('updateAgentStatus',dict).subscribe((response: any) => {
+			      let msg = 'Agent status has been updated succesfully.';
+		          this.layoutUtilsService.showActionNotification(msg, MessageType.Delete);
+			      this.getAllAgentsData();
+			    });
+			}else{
+				return;
+			}
+		}
+		
 	}
 }

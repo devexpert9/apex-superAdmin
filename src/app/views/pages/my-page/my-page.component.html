@@ -78,6 +78,11 @@
 								<div class='imageParent'>
 				     	 			<input type="file" (change)="onFileChanged($event,'self_service')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='self_service_img' fileinput="file"  ngf-select>
 		                   		</div>
+
+		                   		<span *ngIf="imageSizeError" style="font-weight:bold;color:red;">
+									{{imageSizeError}}
+								</span>
+
 							    <div class="formimg" style="margin:10px 0 0 1px">
 							      <img height="110px" src="{{selfImage1}}" id="ban_img"/>
 						        </div>
@@ -115,6 +120,9 @@
 								<div class='imageParent'>
 				     	 			<input type="file" (change)="onFileChanged($event,'disability_img')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='disability_img' fileinput="file"  ngf-select>
 		                   		</div>
+		                   		<span *ngIf="imageSizeError1" style="font-weight:bold;color:red;">
+									{{imageSizeError1}}
+								</span>
 							    <div class="formimg" style="margin:10px 0 0 1px">
 							      <img height="110px" src="{{disabilityImage1}}" id="ban_img1"/>
 						        </div>
@@ -157,6 +165,9 @@
 								<div class='imageParent'>
 				     	 			<input type="file" (change)="onFileChanged($event,'property_casuality_img')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='property_casuality_img' fileinput="file"  ngf-select>
 		                   		</div>
+		                   		<span *ngIf="imageSizeError11" style="font-weight:bold;color:red;">
+									{{imageSizeError11}}
+								</span>
 							    <div class="formimg" style="margin:10px 0 0 1px">
 							      <img height="110px" src="{{propertyImage1}}" id="ban_img2"/>
 						        </div>

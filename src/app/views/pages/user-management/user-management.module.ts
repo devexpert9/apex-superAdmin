@@ -61,6 +61,8 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { EditTestimonialComponent } from './edit-testimonial/edit-testimonial.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { GlossaryComponent } from './glossary/glossary.component';
+import { EditGlossaryComponent } from './edit-glossary/edit-glossary.component';
 
 const routes: Routes = [
 	{
@@ -164,7 +166,26 @@ const routes: Routes = [
 				path: 'testimonials/edit/:id',
 				component: EditTestimonialComponent
 			},
-
+			{
+				path: 'glossary',
+				component: GlossaryComponent
+			},
+			{
+				path: 'glossary/add',
+				component: EditGlossaryComponent
+			},
+			{
+				path: 'glossary/add:id',
+				component: EditGlossaryComponent
+			},
+			{
+				path: 'glossary/edit',
+				component: EditGlossaryComponent
+			},
+			{
+				path: 'glossary/edit/:id',
+				component: EditGlossaryComponent
+			},
 			
 		]
 	}
@@ -246,7 +267,9 @@ const routes: Routes = [
 		TestimonialComponent,
 		EditTestimonialComponent,
 		AboutUsComponent,
-		ContactUsComponent
+		ContactUsComponent,
+		GlossaryComponent,
+		EditGlossaryComponent
 	]
 })
 export class UserManagementModule {}

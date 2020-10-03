@@ -72,7 +72,7 @@
 										<mat-form-field class="mat-form-field-fluid">
 											<input matInput formControlName="username"/>
 											<mat-error>Username is
-												<strong>required with min. 6 characters( Only characters allowed)</strong>
+												<strong>required with min. 6 & max. 15 characters( Only characters allowed)</strong>
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
 												<strong>Username</strong>
@@ -84,7 +84,7 @@
 										<mat-form-field class="mat-form-field-fluid">
 											<input type='password' matInput formControlName="password"/>
 											<mat-error>Password is
-												<strong>required with min. 6 characters</strong>
+												<strong>required with min. 6 & max. 15 characters</strong>
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
 												<strong>Password (Min. 6 digits)</strong>
@@ -99,7 +99,7 @@
 										<mat-form-field class="mat-form-field-fluid">
 											<input matInput formControlName="contact"/>
 											<mat-error>Contact is
-												<strong>required ( eg: 9876543210)</strong>
+												<strong>required ( eg: (###) ###-####)</strong>
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
 												<strong>Username</strong>
@@ -162,15 +162,12 @@
 										</mat-form-field>
 									</div>
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<label _ngcontent-uvd-c26="">Country</label>
+										<label _ngcontent-uvd-c26="">Expiry Date</label>
 										<mat-form-field class="mat-form-field-fluid">
-											<input type='text' matInput formControlName="country"/>
-											<mat-error>Country is
+											<input type='date' matInput formControlName="expiry_date"/>
+											<mat-error>Expiry Date is
 												<strong>required</strong>
 											</mat-error>
-											<!-- <mat-hint align="start">Please enter
-												<strong>Password (Min. 6 digits)</strong>
-											</mat-hint> -->
 										</mat-form-field>
 									</div>
 								</div>

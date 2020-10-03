@@ -164,7 +164,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		let regexp = /^\S*$/;
 		let regexpFullname = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
 		let regexpUsername = /^[A-Za-z]+$/;
-		const contactRegex = /^[0-9]{10}$/;
+		// const contactRegex = /^[0-9]{10}$/;
+		const contactRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 		const zipRegex = /^[0-9]{4,8}$/;
 		this.userForm = this.userFB.group({
 			// username: [this.user.username, Validators.required, Validators.pattern(regexp)],
@@ -182,14 +183,16 @@ export class UserEditComponent implements OnInit, OnDestroy {
 			// password: [this.user.password, Validators.required]
 			password: [this.user.password, Validators.compose([
 				Validators.required,
-				Validators.pattern(regexp)
+				Validators.pattern(regexp),
+				Validators.minLength(6),
+				Validators.maxLength(15)
 				])
 			],
 			username: [this.user.username, Validators.compose([
 				Validators.required,
 				Validators.pattern(regexpUsername),
 				Validators.minLength(6),
-				Validators.maxLength(10)
+				Validators.maxLength(15)
 				])
 			],
 	        contact: [this.user.contact, Validators.compose([
@@ -209,7 +212,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	        address: [this.user.address, Validators.compose([
 	        	Validators.required])
 	        ],
-	        country: [this.user.country, Validators.compose([
+	        expiry_date: [this.user.expiry_date, Validators.compose([
 	        	Validators.required])
 	        ],
 		});
@@ -297,13 +300,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
 		_user.email 		= controls.email.value;
 		_user.fullname 		= controls.fullname.value;
 		_user.password 		= controls.password.value;
-		_user.zip 		= controls.zip.value;
-		_user.country 		= controls.country.value;
+		_user.zip 			= controls.zip.value;
+		// _user.country 		= "";
 		_user.state 		= controls.state.value;
-		_user.city 		= controls.city.value;
+		_user.city 			= controls.city.value;
 		_user.address 		= controls.address.value;
 		_user.contact 		= controls.contact.value;
-		// _user.password 		= controls.password.value;
+		_user.expiry_date 	= controls.expiry_date.value == 'undefined' ? new Date() : controls.expiry_date.value;
 		return _user;
 	}
 
@@ -322,12 +325,12 @@ export class UserEditComponent implements OnInit, OnDestroy {
           	"email"     	: _user.email,
           	"password"     	: _user.password,
           	"contact"     	: _user.contact,
-          	"zip"     	: _user.zip,
+          	"zip"     		: _user.zip,
           	"state"     	: _user.state,
-          	"city"     	: _user.city,
-          	"country"     	: _user.country,
+          	"city"     		: _user.city,
+          	"country"     	: "",
           	"address"     	: _user.address,
-          	// "contcat"     	: _user.contcat,
+          	"expiry_date"   : _user.expiry_date,
       	};
 
       	this.adminService.postData('addUser',dict).subscribe((response:any) => {
@@ -356,17 +359,18 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	{
 		this.ngxService.start();
 		let dict = {
-	          	"name"     	: _user.fullname,
-	          	"username"    : _user.username,
+	          	"name"     		: _user.fullname,
+	          	"username"    	: _user.username,
 	          	"email"     	: _user.email,
-	          	"password"    : _user.password,
-	          	"_id" 		: _user.id,
+	          	"password"    	: _user.password,
+	          	"_id" 			: _user.id,
 	          	"contact"     	: _user.contact,
-          		"zip"     	: _user.zip,
+          		"zip"     		: _user.zip,
           		"state"     	: _user.state,
-          		"city"     	: _user.city,
-          		"country"     	: _user.country,
+          		"city"     		: _user.city,
+          		"country"     	: "",
           		"address"     	: _user.address,
+          		"expiry_date"   : _user.expiry_date
 	      	};
 
       	this.adminService.postData('update_user',dict).subscribe((response:any) => {

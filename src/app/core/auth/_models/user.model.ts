@@ -30,7 +30,10 @@ export class User extends BaseModel {
   image: string;
   website: string;
   socialNetworks: SocialNetworks;
-
+  topic: string;
+  defination: string;
+  expiry_date: any;
+  _id: string; 
   clear(): void {
     this.id = undefined;
     this.username = '';
@@ -56,7 +59,7 @@ export class User extends BaseModel {
     // this.contact = '';
     // this.zip = '';
     // this.position = '';
-
+    this.expiry_date = '';
     this.address = ''; //new Address();
     // this.address.clear();
     this.socialNetworks = new SocialNetworks();

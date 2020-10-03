@@ -36,6 +36,9 @@ export class MyPageComponent implements OnInit {
     disabilityImage2: any = '';
     propertyImage2: any = '';
     showError: any;
+    imageSizeError: any;
+    imageSizeError1: any;
+    imageSizeError11: any;
   	constructor(private layoutUtilsService: LayoutUtilsService, private ngxService: NgxUiLoaderService, private fb: FormBuilder, public route: ActivatedRoute, public adminService: AdminService, public router: Router, public changeDetection: ChangeDetectorRef) { }
 
 
@@ -174,14 +177,62 @@ export class MyPageComponent implements OnInit {
 	    // this.authForm.get('image').setValue(selectedFile);
 	    console.log(event.target, event.target.files[0])
 	    const reader = new FileReader();
+
+      let file = event.target.files[0]; 
+      const img = new Image();
+      img.src = window.URL.createObjectURL( file );
+
+
 	    reader.onload = () => {
-	      // this.banner_image = reader.result;
-	      	if(image == 'self_service'){
-	  			this.selfImage1 = reader.result;
-	  		}else if(image == 'disability_img'){
-	  			this.disabilityImage1 = reader.result;
-	  		}else if(image == 'property_casuality_img'){
-	  			this.propertyImage1 = reader.result;
+
+        const width   = img.naturalWidth;
+        const height  = img.naturalHeight;
+        window.URL.revokeObjectURL( img.src );
+
+      	if(image == 'self_service')
+        {
+          if( width != 400 && height != 400 ) 
+          {
+            this.imageSizeError = "Image should have dimentions 400 x 400 size";
+            this.changeDetection.detectChanges();
+            return false;
+          }
+          else{
+            this.imageSizeError = "";
+            this.selfImage1 = reader.result;
+            this.changeDetection.detectChanges();
+            console.log(this.selfImage1)  
+          }
+	  		}
+        else if(image == 'disability_img')
+        {
+          if( width != 400 && height != 400 ) 
+          {
+            this.imageSizeError1 = "Image should have dimentions 400 x 400 size";
+            this.changeDetection.detectChanges();
+            return false;
+          }
+          else{
+            this.imageSizeError1 = "";
+            this.disabilityImage1 = reader.result;
+            this.changeDetection.detectChanges();
+            console.log(this.selfImage1)  
+          }
+	  		}
+        else if(image == 'property_casuality_img')
+        {
+          if( width != 400 && height != 400 ) 
+          {
+            this.imageSizeError11 = "Image should have dimentions 400 x 400 size";
+            this.changeDetection.detectChanges();
+            return false;
+          }
+          else{
+            this.imageSizeError11 = "";
+            this.propertyImage1 = reader.result;
+            this.changeDetection.detectChanges();
+            console.log(this.selfImage1)  
+          }
 	  		}
 	    };
 	    reader.readAsDataURL(selectedFile);
@@ -199,6 +250,14 @@ export class MyPageComponent implements OnInit {
 	        );
 	        return;
       	}
+
+        if(this.imageSizeError != ''){
+          return;
+        }if(this.imageSizeError1 != ''){
+          return;
+        }if(this.imageSizeError11 != ''){
+          return;
+        }
 
       	this.ngxService.start();
       	this.uploadImage(0);

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // RxJS
@@ -35,7 +35,7 @@ import {
 })
 export class EditTestimonialComponent implements OnInit {
 
-  user: User;
+  	user: User;
 	userId$: Observable<number>;
 	oldUser: User;
 	userId: any;
@@ -48,8 +48,10 @@ export class EditTestimonialComponent implements OnInit {
 	userForm: FormGroup;
 	hasFormErrors = false;
 	selfImage1:any;
+	selfImage11:any;
 	selfImage:any = '';
 	showError:any;
+	imageSizeError:any;
 	imageRequired: any = false;
 	imagePath:any = 'http://3.136.84.42:3000/images/';
 	// Private properties
@@ -74,7 +76,8 @@ export class EditTestimonialComponent implements OnInit {
 		           private store: Store<AppState>,
 		           public adminService: AdminService,
 		           private layoutConfigService: LayoutConfigService,
-		           private ngxService: NgxUiLoaderService) { }
+		           private ngxService: NgxUiLoaderService,
+    				private changeDetection: ChangeDetectorRef) { }
 
 	/**
 	 * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
@@ -103,6 +106,9 @@ export class EditTestimonialComponent implements OnInit {
 			      this.oldUser = Object.assign({}, this.user);
 			      this.initUser();
 			      this.selfImage1 = response.data.image;
+			      this.selfImage1 = 'http://3.136.84.42:3000/images/'+response.data.image;
+
+
 			      document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+ this.selfImage1);
 				// 		this.initUser();
 			      // if(response.status == 1){
@@ -236,17 +242,40 @@ export class EditTestimonialComponent implements OnInit {
 	public onFileChanged(event, image) 
   	{
   		var selectedFile = event.target.files[0];
-  		
   		this.selfImage = selectedFile;
-	    
-	    //this.selectedFile = selectedFile;
 	    this.showError = false;
-	    // this.authForm.get('image').setValue(selectedFile);
+
 	    console.log(event.target, event.target.files[0])
 	    const reader = new FileReader();
+
+	    // reader.onload = () => {
+	    //   this.selfImage1 = reader.result;
+	    // };
+	    let file = event.target.files[0]; 
+	    const img = new Image();
+	    img.src = window.URL.createObjectURL( file );
+
 	    reader.onload = () => {
-	      this.selfImage1 = reader.result;
-	    };
+
+			const width   = img.naturalWidth;
+			const height  = img.naturalHeight;
+
+			window.URL.revokeObjectURL( img.src );
+
+			if( width != 200 && height != 200 ) 
+			{
+				this.imageSizeError = "Image should have dimentions 200 x 200 size";
+				this.changeDetection.detectChanges();
+				return false;
+			}
+			else{
+				this.imageSizeError = "";
+				this.selfImage1 = reader.result;
+				this.changeDetection.detectChanges();
+				console.log(this.selfImage1)  
+			}
+		};
+
 	    reader.readAsDataURL(selectedFile);
   	}
 
@@ -276,6 +305,11 @@ export class EditTestimonialComponent implements OnInit {
 			}
 			return;
 		}
+
+		if(this.imageSizeError != ''){
+      		return;
+    	}
+
 		console.log(this.imageRequired);
 		if(this.imageRequired && this.selfImage == ''){
 			this.showError = true;

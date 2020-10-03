@@ -93,7 +93,7 @@
 									</div>
 
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<label _ngcontent-uvd-c26="">Select Image</label>
+										<label _ngcontent-uvd-c26="">Select Image <em style="font-size: 12px; color: chocolate;margin: 0 0 0 12px;">* Size should be 200 x 200</em> </label>
 											
 										<div class="col-md-12" style="float:left;">
 										 	<div class="form-group">
@@ -101,11 +101,14 @@
 								     	 			<input type="file" (change)="onFileChanged($event,'privacy')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='image' fileinput="file"  ngf-select>
 						                   		</div>
 
-											    <div class="formimg" style="margin:10px 0 0 1px">
-											      <img height="110px" src="{{selfImage1}}" id="ban_img" *ngIf="selfImage"/>
+										        <span *ngIf="imageSizeError" style="font-weight:bold;color:red;">
+													{{imageSizeError}}
+												</span>
 
-											      <img height="110px" src="http://3.136.84.42:3000/images/{{selfImage1}}" id="ban_img" *ngIf="selfImage1 && !imageRequired"/>
+											    <div class="formimg" style="width:100%;display:inline-block;margin:10px 0 0 0;">
+											      <img height="110px" src="{{selfImage1}}" id="ban_img"/>
 										        </div>
+
 
 										        <span *ngIf="showError">
 													<strong style="color:red;font-weight: normal;font-size: 11px;">Please select image.</strong>
