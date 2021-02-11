@@ -53,7 +53,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 	// Table fields
 	// dataSource: UsersDataSource;
 	
-	displayedColumns = [ 'fullname', 'email', 'expiry_date', 'actions'];
+	displayedColumns = [ 'name', 'email', 'expiry_date', 'actions'];
 	@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 	// @ViewChild('sort1', {static: true}) sort: MatSort;
 	@ViewChild(MatSort, {static: true}) sort: MatSort;

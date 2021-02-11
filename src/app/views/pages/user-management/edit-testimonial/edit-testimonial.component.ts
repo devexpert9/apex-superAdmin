@@ -47,13 +47,13 @@ export class EditTestimonialComponent implements OnInit {
 	soicialNetworksSubject = new BehaviorSubject<SocialNetworks>(new SocialNetworks());
 	userForm: FormGroup;
 	hasFormErrors = false;
-	selfImage1:any;
+	selfImage1:any = '';
 	selfImage11:any;
 	selfImage:any = '';
 	showError:any;
 	imageSizeError:any;
 	imageRequired: any = false;
-	imagePath:any = 'http://3.136.84.42:3000/images/';
+	imagePath:any = 'https://apex-4u.com:8080/images/';
 	// Private properties
 	private subscriptions: Subscription[] = [];
 
@@ -105,11 +105,12 @@ export class EditTestimonialComponent implements OnInit {
 			      this.userId = response.data._id;
 			      this.oldUser = Object.assign({}, this.user);
 			      this.initUser();
-			      this.selfImage1 = response.data.image;
-			      this.selfImage1 = 'http://3.136.84.42:3000/images/'+response.data.image;
+			      this.selfImage = '';
+			      this.selfImage11 = response.data.image;
+			      // this.selfImage1 = 'https://apex-4u.com:8080/images/'+response.data.image;
 
-
-			      document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+ this.selfImage1);
+			      this.imageSizeError = '';
+			      // document.getElementById('ban_img').setAttribute("src",'https://apex-4u.com:8080/images/'+ this.selfImage1);
 				// 		this.initUser();
 			      // if(response.status == 1){
 			      //   this.pageData = response.data.data;
@@ -402,7 +403,7 @@ export class EditTestimonialComponent implements OnInit {
 	          "name"     		: _user.name,
           	"website"     	: _user.website,
           	"message"     	: _user.message,
-          	"image"     	: this.selfImage1,
+          	"image"     	: this.selfImage1 == '' ? this.selfImage11 : this.selfImage1,
 	          "_id" 		: _user.id
 	      	};
 

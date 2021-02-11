@@ -1,0 +1,203 @@
+<kt-portlet>
+
+	<kt-portlet-header [title]="'Manage Page Content'" [class]="'card-head-lg'" >
+		<ng-container ktPortletTools>
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<kt-portlet-body>
+	
+		<div class="row">
+		  	<form class="kt-form" [formGroup]="homeForm" style="float:left;width:100%;">
+			  	<div class="col-md-12" style="clear:both;">
+			  		
+
+				  	<!-- <div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 0px 0;">
+				  		
+				  		<div class="form-group">
+				  			<label style="float:left;width:100%; font-size:17px;padding: 0 10px">Active/In-active Sections</label>
+				  		</div>
+
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 28%;">
+				  			 
+				  			<input type="checkbox"  name="selfHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='selfHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+				  			<span style="font-size:16px;margin: 5px 10px 0 8px;display: inline-block;">
+				  				Self Service
+				  			</span>
+				  		</h2>
+
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 28%;">
+				  			 
+				  			<input type="checkbox"  name="disabilityHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='disabilityHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+				  			<span style="font-size:16px;margin: 5px 10px 0 8px;display: inline-block;">Disability Content</span>
+				  		</h2>
+
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 33%;">
+				  			
+				  			<input type="checkbox"  name="propHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='propHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+				  			<span style="font-size:16px;margin: 5px 10px 0 8px;display: inline-block;">Property And Casuality Content</span> 
+				  		</h2>
+			  		</div> -->
+
+			  		<!-- <div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
+				  		
+				  		
+
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 28%;border:none;" >
+				  			 
+			  				<input type="text"  name="selfHeading" id="input-now" class="dropify headHead" formControlName='selfHeading' placeholder="Enter Heading" *ngIf="homeForm?.controls?.selfHeadingCheckbox.value" style="width: 100%;">
+
+				  		</h2>
+
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 28%;border:none;">
+				  			 
+				  			<input type="text"  name="disabilityHeading" id="input-now" class="dropify headHead" formControlName='disabilityHeading' placeholder="Enter Heading" style="float:left;width: 100%;" *ngIf="homeForm?.controls?.disabilityHeadingCheckbox.value">
+				  		</h2>
+
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 33%;border:none;">
+				  			
+				  			<input type="text"  name="propHeading" id="input-now" class="dropify headHead" formControlName='propHeading' placeholder="Enter Heading" style="float:left;width: 100%;" *ngIf="homeForm?.controls?.propHeadingCheckbox.value">
+				  		</h2>
+			  		</div> -->
+
+				  	<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
+				  		<!-- <h2 class='h2Head' style="font-size:17px">Self Service</h2> -->
+				  		<h2 class='h2Head' style="font-size:17px;float: left;width: 98%;">
+				  			 
+			  				<input type="checkbox"  name="selfHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='selfHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+			  				<input type="text"  name="selfHeading" id="input-now" class="dropify headHead" formControlName='selfHeading' placeholder="Enter Heading"  style="position: absolute;margin-left: 10px;">
+				  		</h2>
+				  		
+				  		<div class="col-md-6" style="float:left;clear: both;">
+						 	<div class="form-group">
+								<div class='imageParent'>
+				     	 			<input type="file" (change)="onFileChanged($event,'self_service')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='self_service_img' fileinput="file"  ngf-select>
+		                   		</div>
+
+		                   		<span *ngIf="imageSizeError" style="font-weight:bold;color:red;">
+									{{imageSizeError}}
+								</span>
+
+							    <div class="formimg" style="margin:10px 0 0 1px">
+							      <img height="110px" src="{{selfImage1}}" id="ban_img"/>
+						        </div>
+
+						        <span *ngIf="showError">
+									<strong>Please add self service image.</strong>
+								</span>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="float:left;">
+						 	<div class="form-group">
+								<!-- <textarea class="form-control" id="self_service" formControlName="self_service" placeholder="Enter Content" row='10' columns='10'></textarea> -->
+
+									<ejs-richtexteditor #toolsRTE  formControlName="self_service" [toolbarSettings]='tools' value=''></ejs-richtexteditor>
+
+								<span *ngIf="homeForm.controls.self_service.hasError('required') && homeForm.controls.self_service.touched">
+									<strong>Please enter content.</strong>
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
+						<h2 class='h2Head' style="font-size:17px;float: left;width: 98%;">
+							<input type="checkbox"  name="disabilityHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='disabilityHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+							<input type="text"  name="disabilityHeading" id="input-now" class="dropify headHead" formControlName='disabilityHeading' placeholder="Enter Heading" style="position: absolute;margin-left: 10px;" >
+						</h2>
+						<!-- <h2 class='h2Head'>
+							<span style="font-size: 16px;margin:0 10px 0 0;">Enter Heading:</span> 
+							<input type="text"  name="disabilityHeading" id="input-now" class="dropify headHead" formControlName='disabilityHeading' placeholder="Enter Heading">
+						</h2> -->
+						<div class="col-md-6" style="float:left;">
+						 	<div class="form-group">
+								<div class='imageParent'>
+				     	 			<input type="file" (change)="onFileChanged($event,'disability_img')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='disability_img' fileinput="file"  ngf-select>
+		                   		</div>
+		                   		<span *ngIf="imageSizeError1" style="font-weight:bold;color:red;">
+									{{imageSizeError1}}
+								</span>
+							    <div class="formimg" style="margin:10px 0 0 1px">
+							      <img height="110px" src="{{disabilityImage1}}" id="ban_img1"/>
+						        </div>
+
+						        <span *ngIf="showError">
+									<strong>Please add disability image.</strong>
+								</span>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="float:left;">
+						
+						 	<div class="form-group">
+								<!-- <textarea class="form-control" id="disability" formControlName="disability" placeholder="Enter Content"></textarea> -->
+
+								<ejs-richtexteditor #toolsRTE  formControlName="disability" [toolbarSettings]='tools' value=''></ejs-richtexteditor>
+
+								<span *ngIf="homeForm.controls.disability.hasError('required') && homeForm.controls.disability.touched">
+									<strong>Please enter content.</strong>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12" style="float:left;background:#e3e3e3;padding:10px 0; margin:0 0 20px 0;">
+						<h2 class='h2Head' style="font-size:17px;float: left;width: 98%;">
+				  			
+					  			<input type="checkbox"  name="propHeadingCheckbox" id="input-now" class="dropify headHead" formControlName='propHeadingCheckbox' placeholder="Enter Heading" style="float:left;">
+
+					  			<input type="text"  name="propHeading" id="input-now" class="dropify headHead" formControlName='propHeading' placeholder="Enter Heading" style="position: absolute;margin-left: 10px;" >
+					  		</h2>
+
+					<!-- <h2 class='h2Head'>
+						<span style="font-size: 16px;margin:0 10px 0 0;">Enter Heading:</span> 
+						<input type="text"  name="propHeading" id="input-now" class="dropify headHead" formControlName='propHeading' placeholder="Enter Heading">
+					</h2> -->
+						<div class="col-md-6" style="float:left;">
+						 	<div class="form-group">
+								<div class='imageParent'>
+				     	 			<input type="file" (change)="onFileChanged($event,'property_casuality_img')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='property_casuality_img' fileinput="file"  ngf-select>
+		                   		</div>
+		                   		<span *ngIf="imageSizeError11" style="font-weight:bold;color:red;">
+									{{imageSizeError11}}
+								</span>
+							    <div class="formimg" style="margin:10px 0 0 1px">
+							      <img height="110px" src="{{propertyImage1}}" id="ban_img2"/>
+						        </div>
+
+						        <span *ngIf="showError">
+									<strong>Please add property and casuality image.</strong>
+								</span>
+							</div>
+						</div>
+
+					<div class="col-md-6" style="float:left;">
+					 	<div class="form-group">
+							<!-- <textarea class="form-control" id="property_casuality" formControlName="property_casuality" placeholder="Enter Content"></textarea> -->
+
+							<ejs-richtexteditor #toolsRTE  formControlName="property_casuality" [toolbarSettings]='tools' value=''></ejs-richtexteditor>
+
+							<span *ngIf="homeForm.controls.property_casuality.hasError('required') && homeForm.controls.property_casuality.touched">
+								<strong>Please enter content.</strong>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12 text-right" style="clear: both;">
+				 	<button class="btn btn-submit mt-3" (click)="submit()" style="background:#add45c;color:#fff;">
+				 		Submit
+				 	</button>
+				</div>
+			</form>
+
+		</div>
+	</kt-portlet-body>
+</kt-portlet> 	

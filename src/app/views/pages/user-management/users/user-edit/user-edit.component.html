@@ -45,7 +45,7 @@
 										<mat-form-field class="mat-form-field-fluid">
 											<input matInput formControlName="fullname"/>
 											<mat-error>Agent Name is
-												<strong>required ( Only characters allowed )</strong>
+												<strong>required ( Only characters allowed, Space before initial character not allowed )</strong>
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
 												<strong>Full Name</strong>
@@ -95,10 +95,10 @@
 
 								<div class="form-group row">
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<label _ngcontent-uvd-c26="">Contact</label>
+										<label _ngcontent-uvd-c26="">Contact Phone</label>
 										<mat-form-field class="mat-form-field-fluid">
 											<input matInput formControlName="contact"/>
-											<mat-error>Contact is
+											<mat-error>Contact Phone is
 												<strong>required ( eg: (###) ###-####)</strong>
 											</mat-error>
 											<!-- <mat-hint align="start">Please enter
@@ -161,8 +161,23 @@
 											</mat-hint> -->
 										</mat-form-field>
 									</div>
+									
+								</div>
+
+								<div class="form-group row">
 									<div class="col-lg-4 kt-margin-bottom-20-mobile">
-										<label _ngcontent-uvd-c26="">Expiry Date</label>
+										<label _ngcontent-uvd-c26="">Registration Date</label>
+										<span style="float:left;clear:both;width:100%; margin:15px 0 0 0" *ngIf="reg_date != ''">
+											{{reg_date | date:"MM/dd/yyyy"}}
+										</span>
+
+										<span style="float:left;clear:both;width:100%; margin:15px 0 0 0" *ngIf="reg_date == ''">
+											{{todaydate | date:"MM/dd/yyyy"}}
+										</span>
+									</div>
+
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Expiration Date</label>
 										<mat-form-field class="mat-form-field-fluid">
 											<input type='date' matInput formControlName="expiry_date"/>
 											<mat-error>Expiry Date is

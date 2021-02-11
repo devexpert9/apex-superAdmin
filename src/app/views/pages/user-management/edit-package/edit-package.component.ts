@@ -168,8 +168,8 @@ export class EditPackageComponent implements OnInit {
 		this.userForm = this.userFB.group({
 			// username: [this.user.username, Validators.required, Validators.pattern(regexp)],
 			name: [this.user.name, Validators.compose([
-				Validators.required,
-				Validators.pattern(regexpFullname)
+				Validators.required
+				// Validators.pattern(regexpFullname)
 				])
 			],
 			price: [this.user.price, Validators.compose([

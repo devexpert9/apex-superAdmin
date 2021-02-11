@@ -17,7 +17,7 @@ import { each, find } from 'lodash';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../../../core/reducers';
 import { AdminService } from '../../../../../services/admin.service';
-
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 // Services
 import { LayoutUtilsService, MessageType, QueryParamsModel } from '../../../../../core/_base/crud';
 // Models
@@ -62,7 +62,7 @@ export class AgentComponent implements OnInit {
 	// Subscriptions
 	private subscriptions: Subscription[] = [];
 
-
+	modalReferenc: NgbModalRef;  
 	pageData:any = [];
 
 	/**
@@ -80,6 +80,7 @@ export class AgentComponent implements OnInit {
 		private layoutUtilsService: LayoutUtilsService,
 		public adminService: AdminService,
 		private subheaderService: SubheaderService,
+		private modalService: NgbModal,
 		private cdr: ChangeDetectorRef,
 		private ngxService: NgxUiLoaderService) {}
 
@@ -151,6 +152,15 @@ export class AgentComponent implements OnInit {
 	     };
 		this.getAllAgentsData();
 	}
+
+	viewEntry(content, row)
+    {
+    	this.row = row;
+    	this.modalReferenc = this.modalService.open(content, { centered: true });
+    }
+    close(){
+    	this.modalReferenc.close();
+    }
 
 	applyFilter(filterValue: string) {
 	    filterValue = filterValue.trim(); // Remove whitespace

@@ -32,7 +32,7 @@ export class CommonRequestOptions extends RequestOptions {
  */
 export function extracted(options: RequestOptionsArgs) {
   if (!validUrl(options.url)) {
-    options.url = 'http://3.136.84.42:3000/' + (options.url ? options.url : "");
+    options.url = 'https://apex-4u.com:8080/' + (options.url ? options.url : "");
   }
  
 

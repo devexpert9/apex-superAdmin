@@ -86,11 +86,13 @@
 											<label _ngcontent-uvd-c26="">Package Interval</label>
 											<select name="timePeriod" placeholder="Enter Interval" formControlName="timePeriod" class="form-control"> 
 												<!-- <option value="">Select a Packaging Interval</option> -->
-												<option value="1" selected>On-time (1 month)</option>
-	  											<option value="1-1">Monthly</option>
-	  											<option value="6">Semi-Annual</option>
-	  											<option value="12">Annual</option>
-	 											<option value="indefinate">Indefinately</option>
+
+	 											<!-- <option value="indefinate">Indefinately (Initial)</option>
+												<option value="1" selected>On-time  (Initial)</option> -->
+	  											<option value="1-1">
+	  												Monthly (Ongoing)</option>
+	  											<option value="6">Semi-Annual (Ongoing)</option>
+	  											<option value="12">Annual (Ongoing)</option>
  											</select>
 										<!-- </mat-form-field> -->
 											<span *ngIf="userForm.controls.timePeriod.hasError('required') && userForm.controls.timePeriod.touched">

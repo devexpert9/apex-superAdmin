@@ -109,7 +109,7 @@ export class PrivacyComponent implements OnInit {
     			{	
     				this.imageRequired = false;
 	    			this.selfImage1 = response.data.image;
-	    			// document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+response.data.image);
+	    			// document.getElementById('ban_img').setAttribute("src",'https://apex-4u.com:8080/images/'+response.data.image);
 	    		}else{
 	    			// document.getElementById('ban_img').setAttribute("src", '');
 	    		}

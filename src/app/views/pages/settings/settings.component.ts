@@ -32,7 +32,7 @@ export class SettingsComponent implements OnInit {
 
       const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
       const nameRegx = /(^\w+)\s?/;
-      const contactRegex = /^[0-9]{10}$/;
+      const contactRegex = /^\(\d{3}\) \d{3}-?\d{4}$/;
 
       this.homeForm = this.fb.group({
         fname: [profile.firstname, Validators.compose([Validators.required, Validators.pattern(nameRegx)])],

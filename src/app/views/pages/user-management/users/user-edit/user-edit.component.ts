@@ -39,7 +39,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	userId$: Observable<number>;
 	oldUser: User;
 	userId: any;
+	reg_date: any = '';
+	pageType: any;
 	name: any;
+	todaydate:any='';
 	selectedTab = 0;
 	loading$: Observable<boolean>;
 	rolesSubject = new BehaviorSubject<number[]>([]);
@@ -79,6 +82,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 * On init
 	 */
 	ngOnInit() {
+		this.todaydate = new Date();
 		this.ngxService.start();
 		// this.loading$ = this.store.pipe(select(selectUsersActionLoading));
 		const routeSubscription =  this.activatedRoute.params.subscribe(params => {
@@ -94,6 +98,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 			      
 			      this.user = response.data;
 			      this.name = response.data.name;
+			      this.reg_date = response.data.created_on;
 			      this.userId = response.data._id;
 			      this.oldUser = Object.assign({}, this.user);
 			      this.initUser();
@@ -162,10 +167,11 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 */
 	createForm() {
 		let regexp = /^\S*$/;
-		let regexpFullname = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+		// let regexpFullname = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+		let regexpFullname = /^[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*$/;
 		let regexpUsername = /^[A-Za-z]+$/;
-		// const contactRegex = /^[0-9]{10}$/;
-		const contactRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+		const contactRegex = /^\(\d{3}\) \d{3}-?\d{4}$/;
+		// const contactRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 		const zipRegex = /^[0-9]{4,8}$/;
 		this.userForm = this.userFB.group({
 			// username: [this.user.username, Validators.required, Validators.pattern(regexp)],
@@ -319,6 +325,11 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	addUser(_user: User, withBack: boolean = true)
 	{
 		this.ngxService.start();
+
+		let d = new Date();
+			d.setDate(d.getDate() + Number(30));
+		let expiry_date = d; 
+
 		let dict = {
           	"name"     		: _user.fullname,
           	"username"     	: _user.username,
@@ -370,6 +381,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
           		"city"     		: _user.city,
           		"country"     	: "",
           		"address"     	: _user.address,
+          		"created_on"	: new Date(),
           		"expiry_date"   : _user.expiry_date
 	      	};
 
@@ -405,6 +417,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 			// result = `Edit user - ${this.user.fullname}`;
 			// return result;
 			return "Edit Agent";
+			this.pageType = "Edit";
 		}
 		else
 		{
@@ -416,6 +429,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 			// result = `Edit user - ${this.user.fullname}`;
 			// return result;
 			return "Create Agent";
+			this.pageType = "Create";
 		}
 	}
 

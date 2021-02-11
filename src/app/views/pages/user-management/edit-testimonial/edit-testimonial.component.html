@@ -106,7 +106,9 @@
 												</span>
 
 											    <div class="formimg" style="width:100%;display:inline-block;margin:10px 0 0 0;">
-											      <img height="110px" src="{{selfImage1}}" id="ban_img"/>
+											      <img height="110px" src="{{selfImage1}}" *ngIf="selfImage11 != '' && selfImage1 != ''" id="ban_img"/>
+
+											      <img height="110px" src="https://apex-4u.com:8080/images/{{selfImage11}}" *ngIf="selfImage11 != '' && selfImage1 == ''" id="ban_img"/>
 										        </div>
 
 

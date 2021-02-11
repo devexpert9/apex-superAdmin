@@ -1,0 +1,192 @@
+<kt-portlet>
+	<kt-portlet-header [title]="'Manage Sections'" [class]="'card-head-lg'">
+		<ng-container ktPortletTools>
+			<button [routerLink]="['../sections/add']" mat-raised-button color="primary" matTooltip="Create new User" style="background:#add45c;box-shadow:none;">
+				Add New Section
+			</button>
+			<!-- Buttons (Material Angular) | See off.documenations 'https://material.angular.io/components/button/overview' -->
+			<!-- mat-raised-button | Rectangular contained button w/ elevation  -->
+		</ng-container>
+	</kt-portlet-header>
+	<!-- end::Header -->
+
+	<!-- start::Body (attribute: ktPortletBody) -->
+	<kt-portlet-body>
+		<div class="form kt-margin-b-30">
+		<!-- SEARCH CODE BELOW -->
+			<div class="form-filtration">
+				<div class="row align-items-center">
+					<div class="col-md-12 kt-margin-bottom-10-mobile">
+						<mat-form-field class="mat-form-field-fluid" style='float:right;'>
+							<input matInput placeholder="Search user" (keyup)="applyFilter($event.target.value)"  placeholder="Search">
+							<mat-hint align="start">
+								<strong>Search</strong> in all fields
+							</mat-hint>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+
+			<div class="row align-items-center collapse form-group-actions kt-margin-top-20 kt-margin-bottom-20"
+				[ngClass]="{'show' : selection.selected.length > 0}">
+				<div class="col-xl-12">
+					<div class="form-group form-group-inline">
+						<div class="form-label form-label-no-wrap">
+							<label class="font-bold font-danger-">
+								<span translate="ECOMMERCE.COMMON.SELECTED_RECORDS_COUNT"></span> {{ selection.selected.length }}
+							</label>
+						</div>
+						<!-- <div>
+							<button (click)="fetchUsers()" mat-raised-button matTooltip="Fetch selected users"  class="mat-button-mt-4">
+								<mat-icon>clear_all</mat-icon>
+								Fetch Selected
+							</button>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<!-- end::GROUP ACTIONS -->
+		</div>
+		<!-- end::FILTERS & GROUP ACTIONS -->
+
+		<!-- MATERIAL TABLE | Binded to datasources -->
+		<!-- See off.documentations 'https://material.angular.io/components/table/overview' -->
+		<div class="mat-table__wrapper" style="margin:0 0 0 0">
+			<mat-table [dataSource]="dataSource" matSort>
+				
+				<!-- Checkbox Column -->
+
+				<!-- Table with selection -->
+				<!-- https://run.stackblitz.com/api/angular/v1?file=app%2Ftable-selection-example.ts -->
+				
+
+				<ng-container matColumnDef="select">
+					<mat-header-cell *matHeaderCellDef class="mat-column-checkbox">
+						<mat-checkbox (change)="$event ? masterToggle() : null"
+							[checked]="selection.hasValue() && isAllSelected()"
+							[indeterminate]="selection.hasValue() && !isAllSelected()">
+						</mat-checkbox>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row" class="mat-column-checkbox">
+						<mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+						</mat-checkbox>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="image">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
+					<mat-cell *matCellDef="let user">
+						<ng-container>
+							<img src="https://apex-4u.com:8080/images/{{user?.image}}" style="width:100px">
+						</ng-container>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="title">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+					<mat-cell *matCellDef="let user">
+						<ng-container>{{user?.name}}</ng-container>
+					</mat-cell>
+				</ng-container>
+
+
+				<ng-container matColumnDef="description">
+					<mat-header-cell *matHeaderCellDef mat-sort-header>Content</mat-header-cell>
+					<mat-cell *matCellDef="let user">
+						<ng-container >
+							<p [innerHTML]="user?.message">
+								
+							</p>
+						</ng-container>
+					</mat-cell>
+				</ng-container>
+
+
+			  	<ng-container matColumnDef="actions">
+					<mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+					<mat-cell *matCellDef="let user">
+						<label class="switch" *ngIf="user?.status == 0 || user?.status == 'null'" (click)="updateStatus(user, '1')">
+						  <input type="checkbox">
+						  <span class="slider"></span>
+						</label>
+
+						<label class="switch" *ngIf="user?.status == 1" (click)="updateStatus(user, '0')">
+						  <input type="checkbox" checked>
+						  <span class="slider"></span>
+						</label>&nbsp;&nbsp;
+
+						<button (click)="editUser(user._id)" mat-icon-button color="primary" matTooltip="Edit Package">
+							<mat-icon>create</mat-icon>
+						</button>&nbsp;
+						<button mat-icon-button color="warn" matTooltip="Delete package" type="button" (click)="deleteUser(user._id)">
+							<mat-icon>delete</mat-icon>
+						</button>
+						
+					</mat-cell>
+				</ng-container>
+				<!-- <ng-container matColumnDef="_roles" *ngIf="user?.lastname">
+					<mat-header-cell *matHeaderCellDef>Roles</mat-header-cell>
+					<mat-cell *matCellDef="let user">
+						<span>{{ getUserRolesStr(user) }}</span>
+					</mat-cell>
+				</ng-container> -->
+
+				
+
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+				<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+			</mat-table>
+			
+			<!-- <div class="mat-table__message" *ngIf="!dataSource.hasItems">No records found</div> -->
+			<!-- Message for empty data  -->
+			<!-- <div class="mat-table__message" *ngIf="dataSource.isPreloadTextViewed$ | async">Please wait....</div> -->
+		</div>
+
+		<!-- start: BOTTOM -->
+		<div class="mat-table__bottom">
+			<!-- MATERIAL SPINNER | Url: 'https://material.angular.io/components/progress-spinner/overview' -->
+			<!-- <mat-spinner [diameter]="20" *ngIf="dataSource.loading$ | async"></mat-spinner> -->
+			<!-- MATERIAL PAGINATOR | Binded to dasources -->
+			<!-- See off.documentations 'https://material.angular.io/components/paginator/overview' -->
+			<mat-paginator [pageSize]="10" [pageSizeOptions]="[3, 5, 10]"  [showFirstLastButtons]="true"></mat-paginator>
+		</div>
+
+		
+		<!--------------------------------------------------------------->
+		<!-- end: BOTTOM -->
+	</kt-portlet-body>
+	<!-- end::Body -->
+
+
+
+
+</kt-portlet>
+
+
+<!-- MODAL FOR VIEW DETAIlS -->
+			<!-- <div id="lifePopup" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title">Inquiry Details</h4>
+			        <button type="button" class="close" data-dismiss="modal" style="position:absolute;right:25px;color: #000">&times;</button>
+			      </div>
+			      <div class="modal-body">
+			        <p><label>Agent Name </label>{{row?.agent}}</p>
+			        <p><label>Agent Email</label>{{row?.agent_email}}</p>
+			        <p><label>Inquiry User Name</label>{{row?.inquiry_data?.name}}</p>
+			        <p><label>Inquiry User Email</label>{{row?.inquiry_data?.email}}</p>
+			        <p><label>Subject</label>{{row?.inquiry_data?.subject}}</p>
+			        <p><label>Insurance Type</label>{{row?.inquiry_data?.insurance}}</p>
+			        <p><label>Message/Query</label>{{row?.inquiry_data?.message}}</p>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div> -->

@@ -93,7 +93,7 @@ export class ContactUsComponent implements OnInit {
     			{	
     				this.imageRequired = false;
 	    			this.selfImage1 = response.data.image;
-	    			// document.getElementById('ban_img').setAttribute("src",'http://3.136.84.42:3000/images/'+response.data.image);
+	    			// document.getElementById('ban_img').setAttribute("src",'https://apex-4u.com:8080/images/'+response.data.image);
 	    		}else{
 	    			// document.getElementById('ban_img').setAttribute("src", '');
 	    		}
@@ -126,7 +126,7 @@ export class ContactUsComponent implements OnInit {
      	const googleRegex  =  /^(?:http(s)?:\/\/)?(?:www.)?google.com\/(?:(?:\w)*#!\/)?(?:[?\w\-]*\/)?([\w\-]*)?/;
      	const twitterRegex  =  /^(?:http(s)?:\/\/)?(?:www.)?twitter.com\/(?:(?:\w)*#!\/)?(?:[?\w\-]*\/)?([\w\-]*)?/;
 	     // const contactRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-     	const contactRegex = /^[0-9]{5,10}$/;
+     	const contactRegex = /^\(\d{3}\) \d{3}-?\d{4}$/;
      	const emailRegex   = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
      	
       	this.userForm = this.fb.group({

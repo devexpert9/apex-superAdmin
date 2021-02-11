@@ -9,11 +9,11 @@ export class AdminService {
   constructor( private httpClient: HttpClient) { }
 
   // postData(link, formdata):Observable<EventData[]>{
-  //   return this.http.post<EventData[]>('http://3.136.84.42:3000/' + link, formdata);
+  //   return this.http.post<EventData[]>('https://apex-4u.com:8080/' + link, formdata);
   // }
 
   public postData(link, formdata)
   {
-    return this.httpClient.post('http://3.136.84.42:3000/'+link, formdata);
+    return this.httpClient.post('https://apex-4u.com:8080/'+link, formdata);
   }
 }

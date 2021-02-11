@@ -1,0 +1,94 @@
+<kt-portlet>
+	<kt-portlet-header [title]="getComponentTitle()" [class]="'card-head-lg'" [viewLoading$]="loading$">
+		<ng-container ktPortletTools>
+			<!-- <a [routerLink]="['../../']" class="btn btn-secondary mr-2" mat-raised-button matTooltip="Back to the users list">
+				<i class="la la-arrow-left"></i>
+				<span class="hidden-mobile">Back</span>
+			</a>
+			<a href="javascript:;" class="btn btn-secondary mr-2" (click)="reset()" [disabled]="selectedTab !== 0" mat-raised-button matTooltip="Reset changes">
+				<i class="la la-cog"></i>
+				<span class="hidden-mobile">Reset</span>
+			</a> -->
+			<a href="javascript:;" class="btn btn-primary mr-2" color="primary" (click)="onSumbit(false)" mat-raised-button matTooltip="Save & Continue" style="background:#add45c">
+				<span class="hidden-mobile">Save</span>
+			</a>
+			<!-- <button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item color="primary" (click)="onSumbit(true)">Save & Exit</button>
+				<button mat-menu-item color="primary">Save & Duplicate</button>
+				<button mat-menu-item color="primary" (click)="onSumbit(false)">Save & Continue</button>
+			</mat-menu> -->
+		</ng-container>
+	</kt-portlet-header>
+
+	<kt-portlet-body>
+		<mat-tab-group [(selectedIndex)]="selectedTab">
+			<mat-tab>
+				<ng-template mat-tab-label>
+					<i class="mat-tab-label-icon fa fa-user"></i>
+					Sections Info
+				</ng-template>
+				<ng-template matTabContent>
+					<div *ngIf="user">
+						<form [formGroup]="userForm" class="form form-group-seperator-dashed">
+							<div class="form-section form-section-first">
+								<div class="form-group row">
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Title</label>
+										<mat-form-field class="mat-form-field-fluid">
+											<input matInput  formControlName="name"/>
+											<mat-error>Title is
+												<strong>required ( Only characters allowed )</strong>
+											</mat-error>
+										</mat-form-field>
+									</div>
+
+									<div class="col-lg-4 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Select Image <em style="font-size: 12px; color: chocolate;margin: 0 0 0 12px;">* Size should be 400 x 400</em> </label>
+											
+										<div class="col-md-12" style="float:left;">
+										 	<div class="form-group">
+												<div class='imageParent'>
+								     	 			<input type="file" (change)="onFileChanged($event,'privacy')" #fileInput  name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="200MB" id="input-file-now" class="dropify" filepreview="filepreview" formControlName='image' fileinput="file"  ngf-select>
+						                   		</div>
+
+										        <span *ngIf="imageSizeError" style="font-weight:bold;color:red;">
+													{{imageSizeError}}
+												</span>
+
+											    <div class="formimg" style="width:100%;display:inline-block;margin:10px 0 0 0;">
+											      <img height="110px" src="{{selfImage1}}" id="ban_img" *ngIf="selfImage2 != '' && selfImage1 != ''"/>
+
+											      <img height="110px" src="https://apex-4u.com:8080/images/{{selfImage2}}" id="ban_img" *ngIf="selfImage2 != '' && selfImage1 == ''"/>
+										        </div>
+
+										        <span *ngIf="showError">
+													<strong style="color:red;font-weight: normal;font-size: 11px;">Please select image.</strong>
+												</span>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="form-group row">
+									
+
+									<div class="col-lg-12 kt-margin-bottom-20-mobile">
+										<label _ngcontent-uvd-c26="">Content</label>
+											<ejs-richtexteditor #toolsRTE  formControlName="message" [toolbarSettings]='tools' value=''></ejs-richtexteditor>
+											<span *ngIf="userForm.controls.message.hasError('required') && userForm.controls.message.touched">
+												<strong style="color:red;font-weight: normal;font-size: 11px;">Please enter content.</strong>
+											</span>
+									</div>
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</ng-template>
+			</mat-tab>
+		</mat-tab-group>
+	</kt-portlet-body>
+</kt-portlet>

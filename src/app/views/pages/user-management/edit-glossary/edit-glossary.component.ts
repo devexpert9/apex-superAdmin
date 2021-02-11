@@ -55,7 +55,7 @@ export class EditGlossaryComponent implements OnInit {
 	topic:any;
 	defination:any;
 	imageRequired: any = false;
-	imagePath:any = 'http://3.136.84.42:3000/images/';
+	imagePath:any = 'https://apex-4u.com:8080/images/';
 	// Private properties
 	private subscriptions: Subscription[] = [];
 

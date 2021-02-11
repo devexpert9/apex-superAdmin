@@ -24,7 +24,7 @@ import { UserRolesListComponent } from './users/_subs/user-roles/user-roles-list
 import { ChangePasswordComponent } from './users/_subs/change-password/change-password.component';
 import { AddressComponent } from './users/_subs/address/address.component';
 import { SocialNetworksComponent } from './users/_subs/social-networks/social-networks.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Material
 import {
 	usersReducer,
@@ -63,6 +63,11 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { GlossaryComponent } from './glossary/glossary.component';
 import { EditGlossaryComponent } from './edit-glossary/edit-glossary.component';
+
+import { SectionsComponent } from './sections/sections.component';
+import { EditSectionsComponent } from './edit-sections/edit-sections.component';
+import { SignupPackageComponent } from './signup-package/signup-package.component';
+import { EditSignupPackageComponent } from './edit-signup-package/edit-signup-package.component';
 
 const routes: Routes = [
 	{
@@ -135,6 +140,26 @@ const routes: Routes = [
 				component: EditPackageComponent
 			},
 			{
+				path: 'signup-package',
+				component: SignupPackageComponent
+			},
+			{
+				path: 'signup-package/add',
+				component: EditSignupPackageComponent
+			},
+			{
+				path: 'signup-package/add:id',
+				component: EditSignupPackageComponent
+			},
+			{
+				path: 'signup-package/edit',
+				component: EditSignupPackageComponent
+			},
+			{
+				path: 'signup-package/edit/:id',
+				component: EditSignupPackageComponent
+			},
+			{
 				path: 'privacy',
 				component: PrivacyComponent
 			},
@@ -186,6 +211,26 @@ const routes: Routes = [
 				path: 'glossary/edit/:id',
 				component: EditGlossaryComponent
 			},
+			{
+				path: 'sections',
+				component: SectionsComponent
+			},
+			{
+				path: 'sections/add',
+				component: EditSectionsComponent
+			},
+			{
+				path: 'sections/add:id',
+				component: EditSectionsComponent
+			},
+			{
+				path: 'sections/edit',
+				component: EditSectionsComponent
+			},
+			{
+				path: 'sections/edit/:id',
+				component: EditSectionsComponent
+			},
 			
 		]
 	}
@@ -196,6 +241,7 @@ const routes: Routes = [
 		CommonModule,
 		HttpClientModule,
 		PartialsModule,
+		NgbModule,
 		RouterModule.forChild(routes),
 		StoreModule.forFeature('users', usersReducer),
         EffectsModule.forFeature([UserEffects]),
@@ -269,7 +315,11 @@ const routes: Routes = [
 		AboutUsComponent,
 		ContactUsComponent,
 		GlossaryComponent,
-		EditGlossaryComponent
+		EditGlossaryComponent,
+		SectionsComponent,
+		EditSectionsComponent,
+		SignupPackageComponent,
+		EditSignupPackageComponent
 	]
 })
 export class UserManagementModule {}
